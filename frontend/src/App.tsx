@@ -1,0 +1,9 @@
+import { useState } from 'react'
+import { FileCheck2, LayoutDashboard, MessageSquareText, Upload } from 'lucide-react'
+import { PolicyPage } from './pages/PolicyPage'
+import { BatchPage } from './pages/BatchPage'
+
+export default function App() {
+  const [page, setPage] = useState<'policy' | 'batch'>('policy')
+  return <div className="min-h-screen bg-slate-50"><header className="border-b border-slate-200 bg-white"><div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4"><div className="flex items-center gap-3"><div className="rounded-xl bg-slate-900 p-2 text-white"><FileCheck2 size={20} /></div><div><h1 className="font-bold text-slate-900">Employee Policy Triage</h1><p className="text-xs text-slate-500">Policy answers & reimbursement review</p></div></div><a className="text-xs font-semibold text-slate-500 hover:text-slate-900" href="http://localhost:8080/swagger-ui/index.html" target="_blank">Swagger API</a></div></header><main className="mx-auto max-w-7xl px-6 py-8"><div className="mb-8 flex gap-2 rounded-xl border border-slate-200 bg-white p-1 w-fit"><button onClick={() => setPage('policy')} className={`flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-semibold ${page === 'policy' ? 'bg-slate-900 text-white' : 'text-slate-500 hover:bg-slate-50'}`}><MessageSquareText size={16} />Policy Assistant</button><button onClick={() => setPage('batch')} className={`flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-semibold ${page === 'batch' ? 'bg-slate-900 text-white' : 'text-slate-500 hover:bg-slate-50'}`}><Upload size={16} />Batch Review</button></div>{page === 'policy' ? <PolicyPage /> : <BatchPage />}</main><footer className="mx-auto max-w-7xl px-6 pb-8 text-xs text-slate-400">Employee policy and reimbursement Assessment · All reimbursement requests remain subject to human review.</footer></div>
+}
